@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Game Release Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    .page {
+      width: calc(100% - 80px);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: calc(100% - 24px);
+      }
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .legend-dot.exact {
+      background: #d8ecff;
+      border: 1px solid #8abce8;
+    }
+
+    .legend-dot.window {
+      background: #fff2cc;
+      border: 1px dashed #c99a00;
+    }
+
+    .legend-dot.movie {
+      background: #ffd6d6;
+      border: 1px solid #d14a4a;
+    }
+
+    .calendar-wrap {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: visible;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: 60px repeat(7, minmax(0, 1fr));
+      grid-template-rows: 36px;
+      grid-auto-rows: minmax(120px, auto);
+      width: 100%;
+      min-width: 0;
+    }
+
+    .cell,
+    .month-label,
+    .day-header,
+    .corner {
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      box-sizing: border-box;
+      display: flex;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .cell {
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-width: 0;
+      flex-direction: column;
+      gap: 4px;
+      overflow: visible;
+    }
+
+    .day-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #eee;
+      font-weight: bold;
+      min-height: 36px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .corner {
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      background: #eee;
+      min-height: 36px;
+    }
+
+    .month-label {
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      z-index: 1;
+      background: #fafafa;
+    }
+
+    .month-even {
+      background: #ffffff;
+    }
+
+    .month-odd {
+      background: #e9f1fb;
+    }
+
+    .date-number {
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .today {
+      outline: 3px solid #ff4d4d;
+      outline-offset: -3px;
+      box-shadow: inset 0 0 0 2px white;
+    }
+
+    .today .date-number::after {
+      content: " Today";
+      font-size: 11px;
+      color: #c00000;
+      font-weight: bold;
+    }
+
+    .event {
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding: 4px 5px;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: normal;
+    }
+
+    .event.exact {
+      background: #d8ecff;
+      border: 1px solid #8abce8;
+    }
+
+    .event.window {
+      background: #fff2cc;
+      border: 1px dashed #c99a00;
+    }
+
+    .event.movie {
+      background: #ffd6d6;
+      border: 1px solid #d14a4a;
+    }
+
+    .event-title {
+      font-weight: bold;
+    }
+
+    .event-note {
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .empty {
+      background: #f7f7f7;
+      color: #bbb;
+    }
+
+    .watchlist {
+      margin-top: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .watchlist h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .watchlist ul {
+      margin: 0;
+      padding-left: 20px;
+      columns: 2;
+      column-gap: 32px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .watchlist li {
+      break-inside: avoid;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>2026 Game & Movie Release Calendar</h1>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot exact"></span>Exact game date</div>
+      <div class="legend-item"><span class="legend-dot window"></span>Game window / estimate</div>
+      <div class="legend-item"><span class="legend-dot movie"></span>Movie</div>
+    </div>
+
+    <div class="calendar-wrap">
+      <div class="calendar" id="calendar"></div>
+    </div>
+
+    <div class="watchlist">
+      <h2>2027+ Watchlist</h2>
+      <ul id="watchlist"></ul>
+    </div>
+  </div>
+
+  <script>
+    const calendar = document.getElementById("calendar");
+    const watchlist = document.getElementById("watchlist");
+
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const year = 2026;
+    const startDate = new Date(year, 0, 1);
+    const endDate = new Date(year, 11, 31);
+
+    const events = [
+      { date: "2026-04-17", title: "Pragmata", note: "released", type: "exact" },
+      { date: "2026-05-14", title: "Subnautica 2", note: "Early Access", type: "exact" },
+      { date: "2026-05-19", title: "Forza Horizon 6", type: "exact" },
+      { date: "2026-05-21", title: "Luna Abyss", type: "exact" },
+      { date: "2026-05-22", title: "LEGO Batman: Legacy of the Dark Knight", type: "exact" },
+      { date: "2026-05-27", title: "007 First Light", type: "exact" },
+      { date: "2026-05-29", title: "Mina the Hollower", type: "exact" },
+      { date: "2026-05-29", title: "Backrooms", note: "movie", type: "movie" },
+      { date: "2026-06-12", title: "Disclosure Day", note: "movie", type: "movie" },
+      { date: "2026-07-09", title: "Assassin’s Creed: Black Flag Resynced", note: "leaked", type: "window" },
+      { date: "2026-07-17", title: "The Odyssey", note: "movie", type: "movie" },
+      { date: "2026-07-28", title: "Halo: Campaign Evolved", note: "dataminer leak", type: "window" },
+      { date: "2026-08-04", title: "Beast of Reincarnation", type: "exact" },
+      { date: "2026-08-01", title: "Lords of the Fallen 2", note: "Aug 2026 / dev CV leak", type: "window" },
+      { date: "2026-09-03", title: "Blood of Dawnwalker", type: "exact" },
+      { date: "2026-09-09", title: "Phantom Blade Zero", type: "exact" },
+      { date: "2026-09-01", title: "PVKK", note: "Sep 2026 / Q3 window", type: "window" },
+      { date: "2026-09-01", title: "Tides of Annihilation", note: "Sep-Oct 2026 / insider leak", type: "window" },
+      { date: "2026-10-01", title: "Control: Resonant", note: "Q4 2026 estimate", type: "window" },
+      { date: "2026-10-01", title: "The Duskbloods", note: "Q4 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Aces of Thunder", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Mortal Shell II", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Warhammer 40,000: Dawn of War IV", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Ontos", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Prison Architect 2", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Road Kings", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Rules of Engagement: The Grey State", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-01", title: "Valor Mortis", note: "Late 2026 estimate", type: "window" },
+      { date: "2026-11-06", title: "Godzilla Minus Zero", note: "movie", type: "movie" },
+      { date: "2026-11-19", title: "GTA VI", type: "exact" },
+      { date: "2026-12-01", title: "Gears of War: E-Day", note: "Nov 2026 estimate / anniversary rumor", type: "window" },
+      { date: "2026-12-01", title: "Kingmakers", note: "Late 2026 / early 2027 estimate", type: "window" },
+      { date: "2026-12-01", title: "ILL", note: "Late 2026 / 2027 estimate", type: "window" },
+      { date: "2026-12-01", title: "Crathos Deep", note: "2026-2027 estimate", type: "window" },
+      { date: "2026-12-01", title: "DEFECT", note: "2026-2027 estimate", type: "window" },
+      { date: "2026-12-18", title: "Dune: Part Three", note: "movie", type: "movie" }
+    ];
+
+    const futureGames = [
+      "Forest 3 — 2027 estimate",
+      "Exodus — Early 2027, confirmed delayed from 2026",
+      "Total War: Warhammer 40,000 — 2027 estimate",
+      "Project TAL — 2027",
+      "The Witcher IV — 2027-2028 estimate",
+      "SOL Shogunate — 2027 estimate",
+      "Supreme Experiment — 2027 estimate",
+      "No Law — 2027 estimate",
+      "Ritual Tides — 2027 estimate",
+      "The Cube — 2027 estimate",
+      "4:Loop — 2027 estimate",
+      "Project: The Perceiver — 2027 estimate",
+      "Project Spectrum — 2027 estimate",
+      "Blight: Survival — 2027 estimate",
+      "OD – A Hideo Kojima Game — 2027-2028 estimate",
+      "Judas — 2027-2028 estimate",
+      "Atomic Heart 2 — 2028 estimate",
+      "The Elder Scrolls VI — 2028 estimate"
+    ];
+
+    buildHeader();
+    buildCalendar();
+    addEvents();
+    addWatchlist();
+    scrollToCurrentWeek();
+
+    function buildHeader() {
+      const corner = document.createElement("div");
+      corner.className = "corner";
+      corner.style.gridColumn = "1";
+      corner.style.gridRow = "1";
+      calendar.appendChild(corner);
+
+      dayNames.forEach((dayName, index) => {
+        const header = document.createElement("div");
+        header.className = "day-header";
+        header.textContent = dayName;
+        header.style.gridColumn = String(index + 2);
+        header.style.gridRow = "1";
+        calendar.appendChild(header);
+      });
+    }
+
+    function buildCalendar() {
+      const weeks = [];
+      const current = new Date(startDate);
+      current.setDate(current.getDate() - current.getDay());
+
+      while (current <= endDate) {
+        const weekStart = new Date(current);
+        weeks.push({
+          start: weekStart,
+          monthIndex: getWeekMonthIndex(weekStart)
+        });
+        current.setDate(current.getDate() + 7);
+      }
+
+      addMonthLabels(weeks);
+      addDateCells(weeks);
+    }
+
+    function addMonthLabels(weeks) {
+      let startRow = 2;
+      let currentMonth = weeks[0].monthIndex;
+
+      for (let i = 1; i <= weeks.length; i++) {
+        const nextMonth = i < weeks.length ? weeks[i].monthIndex : null;
+
+        if (nextMonth !== currentMonth) {
+          const endRow = i + 2;
+          const label = document.createElement("div");
+          label.className = "month-label";
+          label.textContent = monthNames[currentMonth];
+          label.style.gridColumn = "1";
+          label.style.gridRow = `${startRow} / ${endRow}`;
+          calendar.appendChild(label);
+
+          startRow = i + 2;
+          currentMonth = nextMonth;
+        }
+      }
+    }
+
+    function addDateCells(weeks) {
+      weeks.forEach((week, weekIndex) => {
+        const gridRow = weekIndex + 2;
+
+        for (let i = 0; i < 7; i++) {
+          const day = new Date(week.start);
+          day.setDate(week.start.getDate() + i);
+
+          const cell = document.createElement("div");
+          cell.className = "cell";
+          cell.style.gridColumn = String(i + 2);
+          cell.style.gridRow = String(gridRow);
+
+          if (day.getFullYear() !== year) {
+            cell.classList.add("empty");
+          } else {
+            const monthColorClass = day.getMonth() % 2 === 0 ? "month-even" : "month-odd";
+            cell.classList.add(monthColorClass);
+
+            const dateNumber = document.createElement("div");
+            dateNumber.className = "date-number";
+            dateNumber.textContent = day.getDate();
+            cell.appendChild(dateNumber);
+
+            cell.dataset.date = formatDate(day);
+
+            if (isToday(day)) {
+              cell.classList.add("today");
+            }
+          }
+
+          calendar.appendChild(cell);
+        }
+      });
+    }
+
+    function addEvents() {
+      events.forEach(event => {
+        const cell = document.querySelector(`[data-date="${event.date}"]`);
+        if (!cell) return;
+
+        const eventDiv = document.createElement("div");
+        eventDiv.className = `event ${event.type}`;
+
+        const title = document.createElement("div");
+        title.className = "event-title";
+        title.textContent = event.type === "window" ? `~ ${event.title}` : event.title;
+        eventDiv.appendChild(title);
+
+        if (event.note) {
+          const note = document.createElement("div");
+          note.className = "event-note";
+          note.textContent = event.note;
+          eventDiv.appendChild(note);
+        }
+
+        cell.appendChild(eventDiv);
+      });
+    }
+
+    function addWatchlist() {
+      futureGames.forEach(game => {
+        const item = document.createElement("li");
+        item.textContent = game;
+        watchlist.appendChild(item);
+      });
+    }
+
+    function getWeekMonthIndex(weekStart) {
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(weekStart);
+        day.setDate(weekStart.getDate() + i);
+
+        if (day.getFullYear() === year) {
+          return day.getMonth();
+        }
+      }
+      return 0;
+    }
+
+    function scrollToCurrentWeek() {
+      const todayCell = document.querySelector(".today");
+      if (!todayCell) return;
+
+      requestAnimationFrame(() => {
+        todayCell.scrollIntoView({
+          behavior: "auto",
+          block: "center",
+          inline: "nearest"
+        });
+      });
+    }
+
+    function isToday(date) {
+      const today = new Date();
+      return date.getFullYear() === today.getFullYear() &&
+        date.getMonth() === today.getMonth() &&
+        date.getDate() === today.getDate();
+    }
+
+    function formatDate(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      return `${yyyy}-${mm}-${dd}`;
+    }
+  </script>
+</body>
+</html>
