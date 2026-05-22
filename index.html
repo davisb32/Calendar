@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 Game Release Calendar</title>
+  <title>2026 Game & Movie Release Calendar</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -171,12 +171,12 @@
       font-weight: normal;
     }
 
-    .event.exact {
+    .event.game-exact {
       background: #d8ecff;
       border: 1px solid #8abce8;
     }
 
-    .event.window {
+    .event.game-window {
       background: #fff2cc;
       border: 1px dashed #c99a00;
     }
@@ -226,7 +226,20 @@
       break-inside: avoid;
       margin-bottom: 5px;
     }
-      @media (max-width: 800px) {
+
+    .status {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .status.error {
+      color: #b00020;
+      font-weight: bold;
+    }
+
+    @media (max-width: 800px) {
       body {
         background: #f4f4f4;
       }
@@ -326,6 +339,8 @@
       <div class="legend-item"><span class="legend-dot movie"></span>Movie</div>
     </div>
 
+    <div id="status" class="status">Loading calendar_events.csv...</div>
+
     <div class="calendar-wrap">
       <div class="calendar" id="calendar"></div>
     </div>
@@ -337,8 +352,11 @@
   </div>
 
   <script>
+    const CSV_FILE = "calendar_events.csv";
+
     const calendar = document.getElementById("calendar");
     const watchlist = document.getElementById("watchlist");
+    const statusBox = document.getElementById("status");
 
     const monthNames = [
       "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -350,71 +368,33 @@
     const startDate = new Date(year, 0, 1);
     const endDate = new Date(year, 11, 31);
 
-    const events = [
-      { date: "2026-04-17", title: "Pragmata", note: "released", type: "exact" },
-      { date: "2026-05-14", title: "Subnautica 2", note: "Early Access", type: "exact" },
-      { date: "2026-05-19", title: "Forza Horizon 6", type: "exact" },
-      { date: "2026-05-21", title: "Luna Abyss", type: "exact" },
-      { date: "2026-05-22", title: "LEGO Batman: Legacy of the Dark Knight", type: "exact" },
-      { date: "2026-05-27", title: "007 First Light", type: "exact" },
-      { date: "2026-05-29", title: "Mina the Hollower", type: "exact" },
-      { date: "2026-05-29", title: "Backrooms", note: "movie", type: "movie" },
-      { date: "2026-06-12", title: "Disclosure Day", note: "movie", type: "movie" },
-      { date: "2026-07-09", title: "Assassin’s Creed: Black Flag Resynced", note: "leaked", type: "window" },
-      { date: "2026-07-17", title: "The Odyssey", note: "movie", type: "movie" },
-      { date: "2026-07-28", title: "Halo: Campaign Evolved", note: "dataminer leak", type: "window" },
-      { date: "2026-08-04", title: "Beast of Reincarnation", type: "exact" },
-      { date: "2026-08-01", title: "Lords of the Fallen 2", note: "Aug 2026 / dev CV leak", type: "window" },
-      { date: "2026-09-03", title: "Blood of Dawnwalker", type: "exact" },
-      { date: "2026-09-09", title: "Phantom Blade Zero", type: "exact" },
-      { date: "2026-09-01", title: "PVKK", note: "Sep 2026 / Q3 window", type: "window" },
-      { date: "2026-09-01", title: "Tides of Annihilation", note: "Sep-Oct 2026 / insider leak", type: "window" },
-      { date: "2026-10-01", title: "Control: Resonant", note: "Q4 2026 estimate", type: "window" },
-      { date: "2026-10-01", title: "The Duskbloods", note: "Q4 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Aces of Thunder", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Mortal Shell II", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Warhammer 40,000: Dawn of War IV", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Ontos", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Prison Architect 2", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Road Kings", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Rules of Engagement: The Grey State", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-01", title: "Valor Mortis", note: "Late 2026 estimate", type: "window" },
-      { date: "2026-11-06", title: "Godzilla Minus Zero", note: "movie", type: "movie" },
-      { date: "2026-11-19", title: "GTA VI", type: "exact" },
-      { date: "2026-12-01", title: "Gears of War: E-Day", note: "Nov 2026 estimate / anniversary rumor", type: "window" },
-      { date: "2026-12-01", title: "Kingmakers", note: "Late 2026 / early 2027 estimate", type: "window" },
-      { date: "2026-12-01", title: "ILL", note: "Late 2026 / 2027 estimate", type: "window" },
-      { date: "2026-12-01", title: "Crathos Deep", note: "2026-2027 estimate", type: "window" },
-      { date: "2026-12-01", title: "DEFECT", note: "2026-2027 estimate", type: "window" },
-      { date: "2026-12-18", title: "Dune: Part Three", note: "movie", type: "movie" }
-    ];
-
-    const futureGames = [
-      "Forest 3 — 2027 estimate",
-      "Exodus — Early 2027, confirmed delayed from 2026",
-      "Total War: Warhammer 40,000 — 2027 estimate",
-      "Project TAL — 2027",
-      "The Witcher IV — 2027-2028 estimate",
-      "SOL Shogunate — 2027 estimate",
-      "Supreme Experiment — 2027 estimate",
-      "No Law — 2027 estimate",
-      "Ritual Tides — 2027 estimate",
-      "The Cube — 2027 estimate",
-      "4:Loop — 2027 estimate",
-      "Project: The Perceiver — 2027 estimate",
-      "Project Spectrum — 2027 estimate",
-      "Blight: Survival — 2027 estimate",
-      "OD – A Hideo Kojima Game — 2027-2028 estimate",
-      "Judas — 2027-2028 estimate",
-      "Atomic Heart 2 — 2028 estimate",
-      "The Elder Scrolls VI — 2028 estimate"
-    ];
-
     buildHeader();
     buildCalendar();
-    addEvents();
-    addWatchlist();
-    scrollToCurrentWeek();
+    loadCsvData();
+
+    async function loadCsvData() {
+      try {
+        const response = await fetch(`${CSV_FILE}?v=${Date.now()}`);
+        if (!response.ok) {
+          throw new Error(`Could not load ${CSV_FILE}`);
+        }
+
+        const text = await response.text();
+        const rows = parseCsv(text);
+        const items = rows.map(normalizeRow).filter(Boolean);
+
+        addEvents(items.filter(item => item.section === "calendar"));
+        addWatchlist(items.filter(item => item.section === "watchlist"));
+        scrollToCurrentWeek();
+
+        statusBox.textContent = "";
+        statusBox.style.display = "none";
+      } catch (error) {
+        statusBox.textContent = `Error loading ${CSV_FILE}. Make sure it is in the same GitHub repo folder as index.html.`;
+        statusBox.classList.add("error");
+        console.error(error);
+      }
+    }
 
     function buildHeader() {
       const corner = document.createElement("div");
@@ -495,7 +475,6 @@
             const dateNumber = document.createElement("div");
             dateNumber.className = "date-number";
             dateNumber.textContent = day.getDate();
-            dateNumber.dataset.mobileDate = formatMobileDate(day) + " — ";
             cell.appendChild(dateNumber);
 
             cell.dataset.date = formatDate(day);
@@ -510,35 +489,107 @@
       });
     }
 
-    function addEvents() {
-      events.forEach(event => {
-        const cell = document.querySelector(`[data-date="${event.date}"]`);
-        if (!cell) return;
+    function addEvents(events) {
+      events
+        .sort((a, b) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title))
+        .forEach(event => {
+          const cell = document.querySelector(`[data-date="${event.date}"]`);
+          if (!cell) return;
 
-        const eventDiv = document.createElement("div");
-        eventDiv.className = `event ${event.type}`;
+          const eventDiv = document.createElement("div");
+          eventDiv.className = `event ${event.type}`;
 
-        const title = document.createElement("div");
-        title.className = "event-title";
-        title.textContent = event.type === "window" ? `~ ${event.title}` : event.title;
-        eventDiv.appendChild(title);
+          const title = document.createElement("div");
+          title.className = "event-title";
+          title.textContent = event.type === "game-window" ? `~ ${event.title}` : event.title;
+          eventDiv.appendChild(title);
 
-        if (event.note) {
-          const note = document.createElement("div");
-          note.className = "event-note";
-          note.textContent = event.note;
-          eventDiv.appendChild(note);
-        }
+          if (event.note) {
+            const note = document.createElement("div");
+            note.className = "event-note";
+            note.textContent = event.note;
+            eventDiv.appendChild(note);
+          }
 
-        cell.appendChild(eventDiv);
-      });
+          cell.appendChild(eventDiv);
+        });
     }
 
-    function addWatchlist() {
-      futureGames.forEach(game => {
-        const item = document.createElement("li");
-        item.textContent = game;
-        watchlist.appendChild(item);
+    function addWatchlist(items) {
+      items
+        .sort((a, b) => Number(a.sort_order || 9999) - Number(b.sort_order || 9999) || a.title.localeCompare(b.title))
+        .forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = item.note ? `${item.title} — ${item.note}` : item.title;
+          watchlist.appendChild(li);
+        });
+    }
+
+    function normalizeRow(row) {
+      const section = clean(row.section).toLowerCase();
+      const date = clean(row.date);
+      const title = clean(row.title);
+      const type = clean(row.type).toLowerCase();
+      const note = clean(row.note);
+      const sort_order = clean(row.sort_order);
+
+      if (!section || !title) return null;
+      if (section === "calendar" && !date) return null;
+
+      return {
+        section,
+        date,
+        title,
+        type: type || (section === "watchlist" ? "watchlist" : "game-exact"),
+        note,
+        sort_order
+      };
+    }
+
+    function parseCsv(text) {
+      const rows = [];
+      let currentRow = [];
+      let currentValue = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+
+        if (char === '"' && inQuotes && nextChar === '"') {
+          currentValue += '"';
+          i++;
+        } else if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === "," && !inQuotes) {
+          currentRow.push(currentValue);
+          currentValue = "";
+        } else if ((char === "\n" || char === "\r") && !inQuotes) {
+          if (char === "\r" && nextChar === "\n") i++;
+          currentRow.push(currentValue);
+          rows.push(currentRow);
+          currentRow = [];
+          currentValue = "";
+        } else {
+          currentValue += char;
+        }
+      }
+
+      if (currentValue || currentRow.length) {
+        currentRow.push(currentValue);
+        rows.push(currentRow);
+      }
+
+      const cleanedRows = rows.filter(row => row.some(cell => cell.trim() !== ""));
+      if (!cleanedRows.length) return [];
+
+      const headers = cleanedRows[0].map(header => header.trim());
+      return cleanedRows.slice(1).map(row => {
+        const obj = {};
+        headers.forEach((header, index) => {
+          obj[header] = row[index] || "";
+        });
+        return obj;
       });
     }
 
@@ -574,19 +625,15 @@
         date.getDate() === today.getDate();
     }
 
-    function formatMobileDate(date) {
-      return date.toLocaleDateString(undefined, {
-        weekday: "short",
-        month: "short",
-        day: "numeric"
-      });
-    }
-
     function formatDate(date) {
       const yyyy = date.getFullYear();
       const mm = String(date.getMonth() + 1).padStart(2, "0");
       const dd = String(date.getDate()).padStart(2, "0");
       return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function clean(value) {
+      return String(value || "").trim();
     }
   </script>
 </body>
