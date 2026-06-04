@@ -1,70 +1,70 @@
-section	date	title	type	note	sort_order
-calendar	4/17/2026	Pragmata	game-exact	released	
-calendar	5/14/2026	Subnautica 2	game-exact	Early Access	
-calendar	5/19/2026	Forza Horizon 6	game-exact		
-calendar	5/21/2026	Luna Abyss	game-exact		
-calendar	5/21/2026	Psalm 2	game-exact	released	
-calendar	5/22/2026	LEGO Batman: Legacy of the Dark Knight	game-exact		
-calendar	5/27/2026	007 First Light	game-exact		
-calendar	5/29/2026	Backrooms	movie		
-calendar	5/29/2026	Mina the Hollower	game-exact		
-calendar	6/5/2026	Day of the Devs	game-window	Indie showcase - 4 PM Phoenix time	
-calendar	6/5/2026	_Summer Game Fest Live	game-window	Main showcase - 2 PM Phoenix time	
-calendar	6/6/2026	Future Games Show	game-window	Trailer showcase - 12 PM Phoenix time	
-calendar	6/7/2026	PC Gaming Show	game-window	PC-focused showcase - 12 PM Phoenix time	
-calendar	6/7/2026	_Xbox Games Showcase	game-window	Major Xbox showcase - 10 AM Phoenix time	
-calendar	6/12/2026	Disclosure Day	movie		
-calendar	7/9/2026	Assassinâ€™s Creed: Black Flag Resynced	game-window	leaked	
-calendar	7/17/2026	The Odyssey	movie		
-calendar	7/21/2026	DIVE or DIE - Children of Rain	game-exact		
-calendar	7/28/2026	Halo: Campaign Evolved	game-window	dataminer leak	
-calendar	8/1/2026	Lords of the Fallen 2	game-window	Aug 2026 / dev CV leak	
-calendar	8/4/2026	Beast of Reincarnation	game-exact		
-calendar	9/1/2026	PVKK	game-window	Sep 2026 / Q3 window	
-calendar	9/1/2026	Tides of Annihilation	game-window	Sep-Oct 2026 / insider leak	
-calendar	9/3/2026	Blood of Dawnwalker	game-exact		
-calendar	9/9/2026	Cosmic Fear	game-exact		
-calendar	9/9/2026	Phantom Blade Zero	game-exact		
-calendar	10/1/2026	Control: Resonant	game-window	Q4 2026 estimate	
-calendar	10/1/2026	The Duskbloods	game-window	Q4 2026 estimate	
-calendar	11/1/2026	Aces of Thunder	game-window	Late 2026 estimate	
-calendar	11/1/2026	Beyond the Dark: Nightwatch	game-window	Later 2026; Switch 2 exclusive	
-calendar	11/1/2026	Mortal Shell II	game-window	Late 2026 estimate	
-calendar	11/1/2026	Ontos	game-window	Late 2026 estimate	
-calendar	11/1/2026	Prison Architect 2	game-window	Late 2026 estimate	
-calendar	11/1/2026	Road Kings	game-window	Late 2026 estimate	
-calendar	11/1/2026	Rules of Engagement: The Grey State	game-window	Late 2026 estimate	
-calendar	11/1/2026	Valor Mortis	game-window	Late 2026 estimate	
-calendar	11/1/2026	Warhammer 40,000: Dawn of War IV	game-window	Late 2026 estimate	
-calendar	11/6/2026	Godzilla Minus Zero	movie		
-calendar	11/19/2026	GTA VI	game-exact		
-calendar	12/1/2026	Crathos Deep	game-window	2026-2027 estimate	
-calendar	12/1/2026	DEFECT	game-window	2026-2027 estimate	
-calendar	12/1/2026	Dreadline Express	game-window	2026 window; no exact date	
-calendar	12/1/2026	Encryptid	game-window	2026 window; no exact date	
-calendar	12/1/2026	Gears of War: E-Day	game-window	Nov 2026 estimate / anniversary rumor	
-calendar	12/1/2026	ILL	game-window	Late 2026 / 2027 estimate	
-calendar	12/1/2026	Kingmakers	game-window	Late 2026 / early 2027 estimate	
-calendar	12/18/2026	Dune: Part Three	movie		
-watchlist		Forest 3	watchlist	2027 estimate	1
-watchlist		Exodus	watchlist	Early 2027, confirmed delayed from 2026	2
-watchlist		Total War: Warhammer 40,000	watchlist	2027 estimate	3
-watchlist		Project TAL	watchlist	2027	4
-watchlist		The Witcher IV	watchlist	2027-2028 estimate	5
-watchlist		SOL Shogunate	watchlist	2027 estimate	6
-watchlist		Supreme Experiment	watchlist	2027 estimate	7
-watchlist		No Law	watchlist	2027 estimate	8
-watchlist		Ritual Tides	watchlist	2027 estimate	9
-watchlist		The Cube	watchlist	2027 estimate	10
-watchlist		4:Loop	watchlist	2027 estimate	11
-watchlist		Project: The Perceiver	watchlist	2027 estimate	12
-watchlist		Project Spectrum	watchlist	2027 estimate	13
-watchlist		Blight: Survival	watchlist	2027 estimate / long-delayed	14
-watchlist		OD â€“ A Hideo Kojima Game	watchlist	2027-2028 estimate / filming resumes 2026	15
-watchlist		Judas	watchlist	2027-2028 estimate / Ken Levineâ€™s long-dev project	16
-watchlist		Atomic Heart 2	watchlist	2028 estimate / Mundfish: a few years out	17
-watchlist		The Elder Scrolls VI	watchlist	2028 estimate / Bethesda has given no window	18
-watchlist		The Twilight Project	watchlist	TBA; no release window found	19
-watchlist		Farsight	watchlist	TBA; no release window found	20
-watchlist		CORDURA	watchlist	TBA; PC / PS5	21
-watchlist		DIOXIDE	watchlist	TBA; demo expected Q3 2026	22
+section,date,title,type,note,sort_order
+calendar,2026-04-17,Pragmata,game-exact,released,
+calendar,2026-05-14,Subnautica 2,game-exact,Early Access,
+calendar,2026-05-19,Forza Horizon 6,game-exact,,
+calendar,2026-05-21,Luna Abyss,game-exact,,
+calendar,2026-05-21,Psalm 2,game-exact,released,
+calendar,2026-05-22,LEGO Batman: Legacy of the Dark Knight,game-exact,,
+calendar,2026-05-27,007 First Light,game-exact,,
+calendar,2026-05-29,Backrooms,movie,,
+calendar,2026-05-29,Mina the Hollower,game-exact,,
+calendar,2026-06-05,Day of the Devs,game-window,Indie showcase - 4 PM Phoenix time,
+calendar,2026-06-05,_Summer Game Fest Live,game-window,Main showcase - 2 PM Phoenix time,
+calendar,2026-06-06,Future Games Show,game-window,Trailer showcase - 12 PM Phoenix time,
+calendar,2026-06-07,PC Gaming Show,game-window,PC-focused showcase - 12 PM Phoenix time,
+calendar,2026-06-07,_Xbox Games Showcase,game-window,Major Xbox showcase - 10 AM Phoenix time,
+calendar,2026-06-12,Disclosure Day,movie,,
+calendar,2026-07-09,Assassin’s Creed: Black Flag Resynced,game-window,leaked,
+calendar,2026-07-17,The Odyssey,movie,,
+calendar,2026-07-21,DIVE or DIE - Children of Rain,game-exact,,
+calendar,2026-07-28,Halo: Campaign Evolved,game-window,dataminer leak,
+calendar,2026-08-01,Lords of the Fallen 2,game-window,Aug 2026 / dev CV leak,
+calendar,2026-08-04,Beast of Reincarnation,game-exact,,
+calendar,2026-09-01,PVKK,game-window,Sep 2026 / Q3 window,
+calendar,2026-09-01,Tides of Annihilation,game-window,Sep-Oct 2026 / insider leak,
+calendar,2026-09-03,Blood of Dawnwalker,game-exact,,
+calendar,2026-09-09,Cosmic Fear,game-exact,,
+calendar,2026-09-09,Phantom Blade Zero,game-exact,,
+calendar,2026-10-01,Control: Resonant,game-window,Q4 2026 estimate,
+calendar,2026-10-01,The Duskbloods,game-window,Q4 2026 estimate,
+calendar,2026-11-01,Aces of Thunder,game-window,Late 2026 estimate,
+calendar,2026-11-01,Beyond the Dark: Nightwatch,game-window,Later 2026; Switch 2 exclusive,
+calendar,2026-11-01,Mortal Shell II,game-window,Late 2026 estimate,
+calendar,2026-11-01,Ontos,game-window,Late 2026 estimate,
+calendar,2026-11-01,Prison Architect 2,game-window,Late 2026 estimate,
+calendar,2026-11-01,Road Kings,game-window,Late 2026 estimate,
+calendar,2026-11-01,Rules of Engagement: The Grey State,game-window,Late 2026 estimate,
+calendar,2026-11-01,Valor Mortis,game-window,Late 2026 estimate,
+calendar,2026-11-01,"Warhammer 40,000: Dawn of War IV",game-window,Late 2026 estimate,
+calendar,2026-11-06,Godzilla Minus Zero,movie,,
+calendar,2026-11-19,GTA VI,game-exact,,
+calendar,2026-12-01,Crathos Deep,game-window,2026-2027 estimate,
+calendar,2026-12-01,DEFECT,game-window,2026-2027 estimate,
+calendar,2026-12-01,Dreadline Express,game-window,2026 window; no exact date,
+calendar,2026-12-01,Encryptid,game-window,2026 window; no exact date,
+calendar,2026-12-01,Gears of War: E-Day,game-window,Nov 2026 estimate / anniversary rumor,
+calendar,2026-12-01,ILL,game-window,Late 2026 / 2027 estimate,
+calendar,2026-12-01,Kingmakers,game-window,Late 2026 / early 2027 estimate,
+calendar,2026-12-18,Dune: Part Three,movie,,
+watchlist,,Forest 3,watchlist,2027 estimate,1
+watchlist,,Exodus,watchlist,"Early 2027, confirmed delayed from 2026",2
+watchlist,,"Total War: Warhammer 40,000",watchlist,2027 estimate,3
+watchlist,,Project TAL,watchlist,2027,4
+watchlist,,The Witcher IV,watchlist,2027-2028 estimate,5
+watchlist,,SOL Shogunate,watchlist,2027 estimate,6
+watchlist,,Supreme Experiment,watchlist,2027 estimate,7
+watchlist,,No Law,watchlist,2027 estimate,8
+watchlist,,Ritual Tides,watchlist,2027 estimate,9
+watchlist,,The Cube,watchlist,2027 estimate,10
+watchlist,,4:Loop,watchlist,2027 estimate,11
+watchlist,,Project: The Perceiver,watchlist,2027 estimate,12
+watchlist,,Project Spectrum,watchlist,2027 estimate,13
+watchlist,,Blight: Survival,watchlist,2027 estimate / long-delayed,14
+watchlist,,OD â€“ A Hideo Kojima Game,watchlist,2027-2028 estimate / filming resumes 2026,15
+watchlist,,Judas,watchlist,2027-2028 estimate / Ken Levine’s long-dev project,16
+watchlist,,Atomic Heart 2,watchlist,2028 estimate / Mundfish: a few years out,17
+watchlist,,The Elder Scrolls VI,watchlist,2028 estimate / Bethesda has given no window,18
+watchlist,,The Twilight Project,watchlist,TBA; no release window found,19
+watchlist,,Farsight,watchlist,TBA; no release window found,20
+watchlist,,CORDURA,watchlist,TBA; PC / PS5,21
+watchlist,,DIOXIDE,watchlist,TBA; demo expected Q3 2026,22
