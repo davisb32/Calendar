@@ -1,4 +1,5 @@
 section,date,title,type,note,sort_order
+calendar,2026-04-14,REPLACED,game-exact,released,
 calendar,2026-04-17,Pragmata,game-exact,released,
 calendar,2026-05-14,Subnautica 2,game-exact,Early Access,
 calendar,2026-05-19,Forza Horizon 6,game-exact,,
@@ -8,6 +9,7 @@ calendar,2026-05-22,LEGO Batman: Legacy of the Dark Knight,game-exact,,
 calendar,2026-05-27,007 First Light,game-exact,,
 calendar,2026-05-29,Backrooms,movie,,
 calendar,2026-05-29,Mina the Hollower,game-exact,,
+calendar,2026-06-02,Fatekeeper,game-exact,Early Access released,
 calendar,2026-06-05,Day of the Devs,game-window,Indie showcase - 4 PM Phoenix time,
 calendar,2026-06-05,_Summer Game Fest Live,game-window,Main showcase - 2 PM Phoenix time,
 calendar,2026-06-06,Future Games Show,game-window,Trailer showcase - 12 PM Phoenix time,
@@ -31,20 +33,19 @@ calendar,2026-11-01,Aces of Thunder,game-window,Late 2026 estimate,
 calendar,2026-11-01,Beyond the Dark: Nightwatch,game-window,Later 2026; Switch 2 exclusive,
 calendar,2026-11-01,Mortal Shell II,game-window,Late 2026 estimate,
 calendar,2026-11-01,Ontos,game-window,Late 2026 estimate,
-calendar,2026-11-01,Prison Architect 2,game-window,Late 2026 estimate,
 calendar,2026-11-01,Road Kings,game-window,Late 2026 estimate,
 calendar,2026-11-01,Rules of Engagement: The Grey State,game-window,Late 2026 estimate,
 calendar,2026-11-01,Valor Mortis,game-window,Late 2026 estimate,
 calendar,2026-11-01,"Warhammer 40,000: Dawn of War IV",game-window,Late 2026 estimate,
 calendar,2026-11-06,Godzilla Minus Zero,movie,,
 calendar,2026-11-19,GTA VI,game-exact,,
-calendar,2026-12-01,Crathos Deep,game-window,2026-2027 estimate,
+calendar,2026-12-01,Aquapark Tycoon,game-window,2026 window; no exact date,
+calendar,2026-12-01,Crathos Deep,game-window,2026/TBA estimate; no exact date,
 calendar,2026-12-01,DEFECT,game-window,2026-2027 estimate,
 calendar,2026-12-01,Dreadline Express,game-window,2026 window; no exact date,
 calendar,2026-12-01,Encryptid,game-window,2026 window; no exact date,
 calendar,2026-12-01,Gears of War: E-Day,game-window,Nov 2026 estimate / anniversary rumor,
 calendar,2026-12-01,ILL,game-window,Late 2026 / 2027 estimate,
-calendar,2026-12-01,Kingmakers,game-window,Late 2026 / early 2027 estimate,
 calendar,2026-12-18,Dune: Part Three,movie,,
 watchlist,,Forest 3,watchlist,2027 estimate,1
 watchlist,,Exodus,watchlist,"Early 2027, confirmed delayed from 2026",2
@@ -59,12 +60,17 @@ watchlist,,The Cube,watchlist,2027 estimate,10
 watchlist,,4:Loop,watchlist,2027 estimate,11
 watchlist,,Project: The Perceiver,watchlist,2027 estimate,12
 watchlist,,Project Spectrum,watchlist,2027 estimate,13
-watchlist,,Blight: Survival,watchlist,2027 estimate / long-delayed,14
-watchlist,,OD â€“ A Hideo Kojima Game,watchlist,2027-2028 estimate / filming resumes 2026,15
-watchlist,,Judas,watchlist,2027-2028 estimate / Ken Levine’s long-dev project,16
+watchlist,,Blight: Survival,watchlist,TBA; no official release date,14
+watchlist,,OD – A Hideo Kojima Game,watchlist,2027-2028 estimate / filming resumes 2026,15
+watchlist,,Judas,watchlist,TBA; expected no earlier than Apr 2027,16
 watchlist,,Atomic Heart 2,watchlist,2028 estimate / Mundfish: a few years out,17
 watchlist,,The Elder Scrolls VI,watchlist,2028 estimate / Bethesda has given no window,18
 watchlist,,The Twilight Project,watchlist,TBA; no release window found,19
 watchlist,,Farsight,watchlist,TBA; no release window found,20
 watchlist,,CORDURA,watchlist,TBA; PC / PS5,21
 watchlist,,DIOXIDE,watchlist,TBA; demo expected Q3 2026,22
+watchlist,,Prison Architect 2,watchlist,Indefinitely delayed; no current release date,23
+watchlist,,Kingmakers,watchlist,Indefinitely delayed; no current release date,24
+watchlist,,ROUTINE,watchlist,"Released Dec 4, 2025",25
+watchlist,,Dust Front RTS,watchlist,Full release TBA; demo planned June 2026,26
+watchlist,,SECOND-LOOP,watchlist,TBA,27
