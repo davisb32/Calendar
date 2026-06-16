@@ -349,6 +349,16 @@
       <h2>2027+ Watchlist</h2>
       <ul id="watchlist"></ul>
     </div>
+
+    <div class="watchlist">
+      <h2>Backlog</h2>
+      <ul id="backlog"></ul>
+    </div>
+
+    <div class="watchlist">
+      <h2>Wishlist</h2>
+      <ul id="wishlist"></ul>
+    </div>
   </div>
 
   <script>
@@ -356,6 +366,8 @@
 
     const calendar = document.getElementById("calendar");
     const watchlist = document.getElementById("watchlist");
+    const backlog = document.getElementById("backlog");
+    const wishlist = document.getElementById("wishlist");
     const statusBox = document.getElementById("status");
 
     const monthNames = [
@@ -385,6 +397,8 @@
 
         addEvents(items.filter(item => item.section === "calendar"));
         addWatchlist(items.filter(item => item.section === "watchlist"));
+        addSimpleList(backlog, items.filter(item => item.section === "backlog"));
+        addSimpleList(wishlist, items.filter(item => item.section === "wishlist"));
         scrollToCurrentWeek();
 
         statusBox.textContent = "";
@@ -525,6 +539,14 @@
         });
     }
 
+    function addSimpleList(targetList, items) {
+      items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.title;
+        targetList.appendChild(li);
+      });
+    }
+
     function normalizeRow(row) {
       const section = clean(row.section).toLowerCase();
       const date = clean(row.date);
@@ -540,7 +562,7 @@
         section,
         date,
         title,
-        type: type || (section === "watchlist" ? "watchlist" : "game-exact"),
+        type: type || (section === "watchlist" || section === "backlog" || section === "wishlist" ? section : "game-exact"),
         note,
         sort_order
       };
